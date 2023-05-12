@@ -5,11 +5,11 @@ class InputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text('Hello World!'),
+    return const AlertDialog(
+      title: Text('Hello World!'),
       actions: [
-        const Text('Hello World!'),
-        const Text('Hello World!'),
+        Text('Hello World!'),
+        Text('Hello World!'),
       ],
     );
   }

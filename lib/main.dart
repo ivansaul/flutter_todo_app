@@ -8,11 +8,13 @@ import 'package:todo_app/ui/screens/home_screen.dart';
 void main() => runApp(
       DevicePreview(
         enabled: !kReleaseMode,
-        builder: (context) => ProviderScope(child: MyApp()), // Wrap your app
+        builder: (context) => const ProviderScope(child: MyApp()), // Wrap your app
       ),
     );
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
