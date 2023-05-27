@@ -1,14 +1,14 @@
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:todo_app/data/localdb_repository.dart';
 import 'package:uuid/uuid.dart';
 
-import '../entities/todo.dart';
+import '../../domain/entities/todo.dart';
+import '../../domain/repositories/localdb_repository.dart';
 
-class LocalDbRepositoryImpl extends LocalDbRepository {
+class LocalDbRepositoryIsarImpl extends LocalDbRepository {
   late Future<Isar> db;
 
-  LocalDbRepositoryImpl() {
+  LocalDbRepositoryIsarImpl() {
     db = openDB();
   }
 
