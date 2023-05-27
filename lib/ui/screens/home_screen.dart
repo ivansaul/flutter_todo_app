@@ -5,11 +5,21 @@ import 'package:todo_app/config/provider/providers.dart';
 
 import '../widgets/widgets.dart';
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  HomeScreenState createState() => HomeScreenState();
+}
+
+class HomeScreenState extends ConsumerState<HomeScreen> {
+  @override
+  void initState() { 
+    super.initState();
+    ref.read(todosProvider.notifier).loadTodos();
+  }
+  @override
+  Widget build(BuildContext context) {
     final titleTodoFilter = ref.watch(titleTodosStatusProvider);
     // final todos = ref.watch(todosProvider);
     final todos = ref.watch(filteredTodosProvider);
@@ -87,13 +97,9 @@ class HomeScreen extends ConsumerWidget {
                 onPressedCreate: () {
                   final dscrNewTodo = ref.read(dscNewTodoProvider);
                   if (dscrNewTodo.isNotEmpty) {
-                    ref
-                        .read(todosProvider.notifier)
-                        .addTodo(description: dscrNewTodo);
+                    ref.read(todosProvider.notifier).addTodo(description: dscrNewTodo);
                     ref.read(dscNewTodoProvider.notifier).update((state) => '');
-                    ref
-                        .read(todoStatusFilterProvider.notifier)
-                        .update((state) => 0);
+                    ref.read(todoStatusFilterProvider.notifier).update((state) => 0);
                     Navigator.of(context).pop();
                   }
                 },

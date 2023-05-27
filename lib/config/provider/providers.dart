@@ -1,7 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
 import 'package:todo_app/entities/todo.dart';
-import 'package:uuid/uuid.dart';
+
+import '../../data/localdb_usecase.dart';
+import 'localdb_usecase_provider.dart';
 
 enum TodoFilter { all, completed, pending }
 
@@ -29,11 +30,13 @@ final pendingcounterProvider = StateProvider<int>((ref) {
   final pending = todos.where((todo) => !todo.completed).toList();
   return pending.length;
 });
+
 final completedcounterProvider = StateProvider<int>((ref) {
   final todos = ref.watch(todosProvider);
   final completed = todos.where((todo) => todo.completed).toList();
   return completed.length;
 });
+
 final reminderscounterProvider = StateProvider<int>((ref) {
   return 0;
 });
@@ -62,50 +65,45 @@ final filteredTodosProvider = Provider<List<Todo>>((ref) {
   return todos;
 });
 
-// **************************
-// ***** TODOS PROVIDER *****
-// **************************
-
-const _uuid = Uuid();
-final _todosBox = Hive.box<Todo>('allTodosBox');
-
-final todosProvider = StateNotifierProvider<TodosNotifier, List<Todo>>((ref) {
-  final todos = _todosBox.values.isEmpty ? <Todo>[] : _todosBox.values.toList();
-  return TodosNotifier(todos.reversed.toList());
-});
-
-class TodosNotifier extends StateNotifier<List<Todo>> {
-  TodosNotifier(List<Todo> todos) : super(todos);
-
-  void addTodo({required String description}) {
-    final Todo newtodo = Todo(
-      id: _uuid.v4(),
-      description: description,
-      completed: false,
-    );
-    state = [newtodo, ...state];
-    _todosBox.put(newtodo.id, newtodo);
-  }
-
-  void toggleTodo(String id) {
-    state = state.map((todo) {
-      if (todo.id != id) return todo;
-      return todo.copyWith(completed: !todo.completed);
-    }).toList();
-    _todosBox.clear();
-    _todosBox.addAll(state);
-  }
-
-  void deleteTodo(String id) {
-    state = state.where((todo) => todo.id != id).toList();
-    _todosBox.delete(id);
-  }
-}
-
-// *****************************************
-// ***** NEWTODO DESCRIPTION PROVIDER ******
-// *****************************************
+// // *****************************************
+// // ***** NEWTODO DESCRIPTION PROVIDER ******
+// // *****************************************
 
 final dscNewTodoProvider = StateProvider<String>((ref) {
   return '';
 });
+
+// // **************************
+// // ***** TODOS PROVIDER *****
+// // **************************
+
+final todosProvider = StateNotifierProvider<TodosNotifier, List<Todo>>((ref) {
+  final localDbUsecase = ref.watch(localDbUsecaseProvider);
+  return TodosNotifier(localDbUsecase: localDbUsecase);
+});
+
+class TodosNotifier extends StateNotifier<List<Todo>> {
+  final LocalDbUsecase localDbUsecase;
+  TodosNotifier({
+    required this.localDbUsecase,
+  }) : super([]);
+
+  Future<void> addTodo({required String description}) async {
+    await localDbUsecase.addTodo(description: description);
+    state = await localDbUsecase.loadTodos();
+  }
+
+  Future<void> toggleTodo(String id) async {
+    await localDbUsecase.toggleTodo(id);
+    state = await localDbUsecase.loadTodos();
+  }
+
+  Future<void> deleteTodo(String id) async {
+    await localDbUsecase.deleteTodo(id);
+    state = await localDbUsecase.loadTodos();
+  }
+
+  Future<void> loadTodos() async {
+    state = await localDbUsecase.loadTodos();
+  }
+}

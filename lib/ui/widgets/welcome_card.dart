@@ -102,7 +102,7 @@ class WelcomeCard extends StatelessWidget {
                 cursorColor: const Color(0xff9C9A9A),
                 onSuffixTap: () {},
                 onSubmitted: (value) {
-                  print(value);
+                  // print(value);
                 },
               ),
             ),

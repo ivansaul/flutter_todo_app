@@ -2,18 +2,10 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo_app/config/theme/app_theme.dart';
-import 'package:todo_app/entities/todo.dart';
 import 'package:todo_app/ui/screens/home_screen.dart';
 
-Future<void> main() async {
-  // Hive
-  WidgetsFlutterBinding.ensureInitialized();
-  Hive.registerAdapter(TodoAdapter());
-  await Hive.initFlutter();
-  await Hive.openBox<Todo>('allTodosBox');
-
+void main() {
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
