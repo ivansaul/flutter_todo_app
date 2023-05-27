@@ -1,6 +1,6 @@
 # Flutter Todo App
 
-A simple project using Flutter implemented with Isar and Hive DataBases. This project is not completed yet, as soon as possible when it's complete I will update it here.
+A simple TODO APP using Flutter implemented with Isar and Hive DataBases. This project is not completed yet, as soon as possible when it's complete I will update it here.
 
 ## **Screens**
 
