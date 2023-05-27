@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_app/ui/widgets/widgets.dart';
+import 'package:todo_app/presentation/widgets/widgets.dart';
 
 class WelcomeCard extends StatelessWidget {
   final int completedCounter;

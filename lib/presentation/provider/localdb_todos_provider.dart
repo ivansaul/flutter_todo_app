@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:todo_app/entities/todo.dart';
 
-import '../../data/localdb_usecase.dart';
+import '../../domain/entities/todo.dart';
+import '../../domain/usecases/localdb_usecase.dart';
 import 'localdb_usecase_provider.dart';
 
 enum TodoFilter { all, completed, pending }

@@ -1,6 +1,7 @@
-import 'package:todo_app/data/localdb_repository.dart';
-import 'package:todo_app/data/localdb_usecase.dart';
-import 'package:todo_app/entities/todo.dart';
+import 'package:todo_app/domain/repositories/localdb_repository.dart';
+import 'package:todo_app/domain/usecases/localdb_usecase.dart';
+
+import '../entities/todo.dart';
 
 class LocalDbUsecaseImpl extends LocalDbUsecase {
   final LocalDbRepository localDbRepository;

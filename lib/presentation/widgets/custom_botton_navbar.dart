@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:stylish_bottom_bar/model/bar_items.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
-import 'package:todo_app/config/provider/providers.dart';
+import 'package:todo_app/presentation/provider/providers.dart';
 
 class CustomNavBar extends ConsumerWidget {
   const CustomNavBar({Key? key}) : super(key: key);

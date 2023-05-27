@@ -3,14 +3,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo_app/config/theme/app_theme.dart';
-import 'package:todo_app/ui/screens/home_screen.dart';
+import 'package:todo_app/presentation/screens/home_screen.dart';
 
 void main() {
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
-      builder: (context) =>
-          const ProviderScope(child: MyApp()), // Wrap your app
+      builder: (context) => const ProviderScope(child: MyApp()), // Wrap your app
     ),
   );
 }

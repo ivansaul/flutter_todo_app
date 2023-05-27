@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_app/config/provider/providers.dart';
+import 'package:todo_app/presentation/provider/providers.dart';
 
 import '../widgets/widgets.dart';
 
@@ -14,10 +14,11 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class HomeScreenState extends ConsumerState<HomeScreen> {
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     ref.read(todosProvider.notifier).loadTodos();
   }
+
   @override
   Widget build(BuildContext context) {
     final titleTodoFilter = ref.watch(titleTodosStatusProvider);

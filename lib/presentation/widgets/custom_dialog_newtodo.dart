@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_app/config/provider/providers.dart';
+import 'package:todo_app/presentation/provider/providers.dart';
 
 class CustomdialogNewTodo extends ConsumerWidget {
   final void Function()? onPressedCreate;
