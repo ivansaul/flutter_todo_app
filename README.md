@@ -1,22 +1,13 @@
 # Flutter Todo App
 
-![](https://i.imgur.com/mksmb7x.jpg)
+A simple project using Flutter implemented with Isar and Hive DataBases. This project is not completed yet, as soon as possible when it's complete I will update it here.
 
+## **Screens**
 
-**UI**
-- [Figma - Inspiration](https://www.figma.com/file/2BmITb4vT52bGLnxHdr0F3/Today's-Assistant---FREE-(Community)?type=design&t=9ETYcBb8Q2WW1c5c-1)
+![UI](https://i.imgur.com/39QVqTZ.jpg)
 
-A new Flutter project.
+## **Demo**
 
-## Getting Started
+![demo](https://raw.githubusercontent.com/ivansaul/demos/master/flutter/todo-list-app-demo.gif)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [UI - Figma](https://www.figma.com/community/file/1124394532783501567)
