@@ -1,6 +1,6 @@
 # Flutter Todo App
 
-A simple TODO APP using Flutter implemented with Isar and Hive DataBases. This project is not completed yet, as soon as possible when it's complete I will update it here.
+A simple TODO APP implemented using Flutter, powered by Riverpod as the state management solution, and utilizing Isar and Hive as local databases. This project is not completed yet, as soon as possible when it's complete I will update it here. Stay tuned for more exciting updates!
 
 ## **Screens**
 
