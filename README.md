@@ -21,9 +21,9 @@ A simple TODO APP implemented using Flutter, powered by Riverpod as the state ma
 - [x] Local data base (Isar / Hive)
 - [x] Custom search bar
 - [x] Custom Bottom navigation bar
-- [] Sync across devices.
-- [] Customizable labels and tags.
-- [] Customizable settings.
+- [ ] Sync across devices.
+- [ ] Customizable labels and tags.
+- [ ] Customizable settings.
 
 and much more...
 Check it yourself :)
