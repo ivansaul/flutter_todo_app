@@ -11,7 +11,7 @@ class CustomNavBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const selectedColor = Colors.green;
     const unSelectedColor = Color(0xff8C8C8C);
-    final currentIndex = ref.watch(todoStatusFilterProvider);
+    final currentFilter = ref.watch(selectedFilterTodoProvider);
     return StylishBottomBar(
       items: [
         BottomBarItem(
@@ -55,9 +55,11 @@ class CustomNavBar extends ConsumerWidget {
       ],
       hasNotch: true,
       fabLocation: StylishBarFabLocation.center,
-      currentIndex: currentIndex,
+      currentIndex: currentFilter.index,
       onTap: (index) {
-        ref.read(todoStatusFilterProvider.notifier).update((state) => index);
+        ref
+            .read(selectedFilterTodoProvider.notifier)
+            .update((state) => TodoFilter.values[index]);
       },
       option: AnimatedBarOptions(
         // iconSize: 32,

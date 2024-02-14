@@ -5,12 +5,12 @@ import 'package:todo_app/features/tasks/presentation/provider/todos_repository_p
 
 enum TodoFilter { all, completed, pending, reminders }
 
-final todoStatusFilterProvider = StateProvider<TodoFilter>((ref) {
+final selectedFilterTodoProvider = StateProvider<TodoFilter>((ref) {
   return TodoFilter.all;
 });
 
 final titleTodosStatusProvider = StateProvider<String>((ref) {
-  final todoFilter = ref.watch(todoStatusFilterProvider);
+  final todoFilter = ref.watch(selectedFilterTodoProvider);
   return switch (todoFilter) {
     TodoFilter.all => 'All',
     TodoFilter.completed => 'Completed',
@@ -24,7 +24,7 @@ final titleTodosStatusProvider = StateProvider<String>((ref) {
 // ***********************************
 
 final filteredTodosProvider = Provider<List<Todo>>((ref) {
-  final todoFilter = ref.watch(todoStatusFilterProvider);
+  final todoFilter = ref.watch(selectedFilterTodoProvider);
   final todos = ref.watch(todosProvider);
 
   return switch (todoFilter) {
