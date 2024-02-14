@@ -3,11 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_app/presentation/provider/providers.dart';
+import 'package:todo_app/features/tasks/presentation/provider/todos_provider.dart';
 
-class CustomdialogNewTodo extends ConsumerWidget {
+class CustomDialogNewTodo extends ConsumerWidget {
   final void Function()? onPressedCreate;
-  const CustomdialogNewTodo({
+  const CustomDialogNewTodo({
     Key? key,
     required this.onPressedCreate,
   }) : super(key: key);

@@ -1,3 +1,6 @@
+# Custom ignore list
+*.g.dart
+
 # Miscellaneous
 *.class
 *.log

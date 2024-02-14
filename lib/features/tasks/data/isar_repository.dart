@@ -1,14 +1,13 @@
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:todo_app/features/tasks/data/todos_repository.dart';
+import 'package:todo_app/features/tasks/domain/todo.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../domain/entities/todo.dart';
-import '../../domain/repositories/localdb_repository.dart';
-
-class LocalDbRepositoryIsarImpl extends LocalDbRepository {
+class IsarRepository implements TodosRepository {
   late Future<Isar> db;
 
-  LocalDbRepositoryIsarImpl() {
+  IsarRepository() {
     db = openDB();
   }
 
@@ -26,7 +25,8 @@ class LocalDbRepositoryIsarImpl extends LocalDbRepository {
     final Isar isar = await db;
     const uuid = Uuid();
     await isar.writeTxn(() async {
-      final newTodo = Todo(id: uuid.v4(), description: description, completed: false);
+      final newTodo =
+          Todo(id: uuid.v4(), description: description, completed: false);
       await isar.todos.put(newTodo);
     });
   }
@@ -56,7 +56,7 @@ class LocalDbRepositoryIsarImpl extends LocalDbRepository {
   }
 
   @override
-  Future<List<Todo>> loadTodos() async {
+  Future<List<Todo>> getTodos() async {
     final Isar isar = await db;
     final todos = await isar.todos.where(sort: Sort.desc).anyIsarId().findAll();
     return todos;

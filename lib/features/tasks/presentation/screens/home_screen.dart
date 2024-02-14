@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_app/presentation/provider/providers.dart';
-
-import '../widgets/widgets.dart';
+import 'package:todo_app/features/tasks/presentation/provider/todos_provider.dart';
+import 'package:todo_app/features/tasks/presentation/widgets/custom_botton_navbar.dart';
+import 'package:todo_app/features/tasks/presentation/widgets/custom_dialog_newtodo.dart';
+import 'package:todo_app/features/tasks/presentation/widgets/todo_widget.dart';
+import 'package:todo_app/features/tasks/presentation/widgets/welcome_card.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,12 +24,11 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final titleTodoFilter = ref.watch(titleTodosStatusProvider);
-    // final todos = ref.watch(todosProvider);
     final todos = ref.watch(filteredTodosProvider);
 
-    final completedCounter = ref.watch(completedcounterProvider);
-    final pendingCounter = ref.watch(pendingcounterProvider);
-    final remindersCounter = ref.watch(reminderscounterProvider);
+    final completedCounter = ref.watch(completedCounterProvider);
+    final pendingCounter = ref.watch(pendingCounterProvider);
+    final remindersCounter = ref.watch(remindersCounterProvider);
 
     return Scaffold(
       body: SafeArea(
@@ -94,13 +95,17 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
             barrierDismissible: false,
             context: context,
             builder: (context) {
-              return CustomdialogNewTodo(
+              return CustomDialogNewTodo(
                 onPressedCreate: () {
                   final dscrNewTodo = ref.read(dscNewTodoProvider);
                   if (dscrNewTodo.isNotEmpty) {
-                    ref.read(todosProvider.notifier).addTodo(description: dscrNewTodo);
+                    ref
+                        .read(todosProvider.notifier)
+                        .addTodo(description: dscrNewTodo);
                     ref.read(dscNewTodoProvider.notifier).update((state) => '');
-                    ref.read(todoStatusFilterProvider.notifier).update((state) => 0);
+                    ref
+                        .read(todoStatusFilterProvider.notifier)
+                        .update((state) => 0);
                     Navigator.of(context).pop();
                   }
                 },

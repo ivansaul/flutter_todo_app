@@ -1,10 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todo_app/features/tasks/data/todos_repository.dart';
+import 'package:todo_app/features/tasks/domain/todo.dart';
+import 'package:todo_app/features/tasks/presentation/provider/todos_repository_provider.dart';
 
-import '../../domain/entities/todo.dart';
-import '../../domain/usecases/localdb_usecase.dart';
-import 'localdb_usecase_provider.dart';
-
-enum TodoFilter { all, completed, pending }
+enum TodoFilter { all, completed, pending, reminders }
 
 final todoStatusFilterProvider = StateProvider<int>((ref) {
   return 0;
@@ -25,19 +24,19 @@ final titleTodosStatusProvider = StateProvider<String>((ref) {
   return 'All';
 });
 
-final pendingcounterProvider = StateProvider<int>((ref) {
+final pendingCounterProvider = Provider<int>((ref) {
   final todos = ref.watch(todosProvider);
   final pending = todos.where((todo) => !todo.completed).toList();
   return pending.length;
 });
 
-final completedcounterProvider = StateProvider<int>((ref) {
+final completedCounterProvider = Provider<int>((ref) {
   final todos = ref.watch(todosProvider);
   final completed = todos.where((todo) => todo.completed).toList();
   return completed.length;
 });
 
-final reminderscounterProvider = StateProvider<int>((ref) {
+final remindersCounterProvider = Provider<int>((ref) {
   return 0;
 });
 
@@ -78,32 +77,32 @@ final dscNewTodoProvider = StateProvider<String>((ref) {
 // // **************************
 
 final todosProvider = StateNotifierProvider<TodosNotifier, List<Todo>>((ref) {
-  final localDbUsecase = ref.watch(localDbUsecaseProvider);
-  return TodosNotifier(localDbUsecase: localDbUsecase);
+  final isarRepository = ref.watch(todosRepositoryProvider);
+  return TodosNotifier(todosRepository: isarRepository);
 });
 
 class TodosNotifier extends StateNotifier<List<Todo>> {
-  final LocalDbUsecase localDbUsecase;
+  final TodosRepository todosRepository;
   TodosNotifier({
-    required this.localDbUsecase,
+    required this.todosRepository,
   }) : super([]);
 
   Future<void> addTodo({required String description}) async {
-    await localDbUsecase.addTodo(description: description);
-    state = await localDbUsecase.loadTodos();
+    await todosRepository.addTodo(description: description);
+    state = await todosRepository.getTodos();
   }
 
   Future<void> toggleTodo(String id) async {
-    await localDbUsecase.toggleTodo(id);
-    state = await localDbUsecase.loadTodos();
+    await todosRepository.toggleTodo(id);
+    state = await todosRepository.getTodos();
   }
 
   Future<void> deleteTodo(String id) async {
-    await localDbUsecase.deleteTodo(id);
-    state = await localDbUsecase.loadTodos();
+    await todosRepository.deleteTodo(id);
+    state = await todosRepository.getTodos();
   }
 
   Future<void> loadTodos() async {
-    state = await localDbUsecase.loadTodos();
+    state = await todosRepository.getTodos();
   }
 }
