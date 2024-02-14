@@ -5,23 +5,18 @@ import 'package:todo_app/features/tasks/presentation/provider/todos_repository_p
 
 enum TodoFilter { all, completed, pending, reminders }
 
-final todoStatusFilterProvider = StateProvider<int>((ref) {
-  return 0;
+final todoStatusFilterProvider = StateProvider<TodoFilter>((ref) {
+  return TodoFilter.all;
 });
 
 final titleTodosStatusProvider = StateProvider<String>((ref) {
   final todoFilter = ref.watch(todoStatusFilterProvider);
-  switch (todoFilter) {
-    case 0:
-      return 'All';
-    case 1:
-      return 'Completed';
-    case 2:
-      return 'Pending';
-    case 3:
-      return 'Reminders';
-  }
-  return 'All';
+  return switch (todoFilter) {
+    TodoFilter.all => 'All',
+    TodoFilter.completed => 'Completed',
+    TodoFilter.pending => 'Pending',
+    TodoFilter.reminders => 'Reminders',
+  };
 });
 
 // ***********************************
@@ -29,23 +24,15 @@ final titleTodosStatusProvider = StateProvider<String>((ref) {
 // ***********************************
 
 final filteredTodosProvider = Provider<List<Todo>>((ref) {
-  final filter = ref.watch(todoStatusFilterProvider);
+  final todoFilter = ref.watch(todoStatusFilterProvider);
   final todos = ref.watch(todosProvider);
 
-  switch (filter) {
-    case 0:
-      return todos;
-    case 1:
-      final completed = todos.where((todo) => todo.completed).toList();
-      return completed;
-    case 2:
-      final pending = todos.where((todo) => !todo.completed).toList();
-      return pending;
-    case 3:
-      final reminders = <Todo>[];
-      return reminders;
-  }
-  return todos;
+  return switch (todoFilter) {
+    TodoFilter.all => todos,
+    TodoFilter.completed => todos.where((todo) => todo.completed).toList(),
+    TodoFilter.pending => todos.where((todo) => !todo.completed).toList(),
+    TodoFilter.reminders => <Todo>[],
+  };
 });
 
 // // *****************************************
