@@ -5,14 +5,12 @@ import 'package:todo_app/features/tasks/presentation/provider/todos_repository_p
 
 enum TodoFilter { all, completed, pending, reminders }
 
+/// The provider for managing the currently selected [TodoFilter].
 final selectedFilterTodoProvider = StateProvider<TodoFilter>((ref) {
   return TodoFilter.all;
 });
 
-// ***********************************
-// ***** FILTERED TODOS PROVIDER *****
-// ***********************************
-
+/// Provides a filtered list of [Todo] items based on the selected [TodoFilter].
 final filteredTodosProvider = Provider<List<Todo>>((ref) {
   final todoFilter = ref.watch(selectedFilterTodoProvider);
   final todos = ref.watch(todosProvider);
@@ -25,21 +23,10 @@ final filteredTodosProvider = Provider<List<Todo>>((ref) {
   };
 });
 
-// // *****************************************
-// // ***** NEWTODO DESCRIPTION PROVIDER ******
-// // *****************************************
-
-final dscNewTodoProvider = StateProvider<String>((ref) {
-  return '';
-});
-
-// // **************************
-// // ***** TODOS PROVIDER *****
-// // **************************
-
+/// The provider for managing the list of [Todo] items.
 final todosProvider = StateNotifierProvider<TodosNotifier, List<Todo>>((ref) {
-  final isarRepository = ref.watch(todosRepositoryProvider);
-  return TodosNotifier(todosRepository: isarRepository);
+  final todosRepository = ref.watch(todosRepositoryProvider);
+  return TodosNotifier(todosRepository: todosRepository);
 });
 
 class TodosNotifier extends StateNotifier<List<Todo>> {
@@ -67,3 +54,8 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
     state = await todosRepository.getTodos();
   }
 }
+
+/// The provider for managing the new [Todo] description.
+final dscNewTodoProvider = StateProvider<String>((ref) {
+  return '';
+});

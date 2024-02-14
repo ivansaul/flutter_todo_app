@@ -4,6 +4,8 @@ import 'package:todo_app/features/tasks/data/todos_repository.dart';
 import 'package:todo_app/features/tasks/domain/todo.dart';
 import 'package:uuid/uuid.dart';
 
+/// An concrete implementation of the [TodosRepository] interface
+/// using the [Isar] database.
 class IsarRepository implements TodosRepository {
   late Future<Isar> db;
 
