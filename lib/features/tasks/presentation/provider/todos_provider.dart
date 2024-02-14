@@ -24,22 +24,6 @@ final titleTodosStatusProvider = StateProvider<String>((ref) {
   return 'All';
 });
 
-final pendingCounterProvider = Provider<int>((ref) {
-  final todos = ref.watch(todosProvider);
-  final pending = todos.where((todo) => !todo.completed).toList();
-  return pending.length;
-});
-
-final completedCounterProvider = Provider<int>((ref) {
-  final todos = ref.watch(todosProvider);
-  final completed = todos.where((todo) => todo.completed).toList();
-  return completed.length;
-});
-
-final remindersCounterProvider = Provider<int>((ref) {
-  return 0;
-});
-
 // ***********************************
 // ***** FILTERED TODOS PROVIDER *****
 // ***********************************
