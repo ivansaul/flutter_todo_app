@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todo_app/features/tasks/presentation/provider/tasks_counter_providers.dart';
 import 'package:todo_app/features/tasks/presentation/provider/todos_provider.dart';
 import 'package:todo_app/features/tasks/presentation/widgets/custom_botton_navbar.dart';
 import 'package:todo_app/features/tasks/presentation/widgets/custom_dialog_newtodo.dart';
@@ -23,12 +24,19 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final titleTodoFilter = ref.watch(titleTodosStatusProvider);
     final todos = ref.watch(filteredTodosProvider);
 
     final completedCounter = ref.watch(completedCounterProvider);
     final pendingCounter = ref.watch(pendingCounterProvider);
     final remindersCounter = ref.watch(remindersCounterProvider);
+    final currentFilter = ref.watch(selectedFilterTodoProvider);
+
+    final tasksTitleGroup = switch (currentFilter) {
+      TodoFilter.all => 'All tasks',
+      TodoFilter.completed => 'Completed tasks',
+      TodoFilter.pending => 'Pending tasks',
+      TodoFilter.reminders => 'Reminders tasks',
+    };
 
     return Scaffold(
       body: SafeArea(
@@ -48,7 +56,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 20, bottom: 10, top: 10),
               child: Text(
-                '$titleTodoFilter tasks',
+                tasksTitleGroup,
                 style: GoogleFonts.roboto(
                   color: const Color(0xff8C8C8C),
                   fontSize: 25,
@@ -104,8 +112,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
                         .addTodo(description: dscrNewTodo);
                     ref.read(dscNewTodoProvider.notifier).update((state) => '');
                     ref
-                        .read(todoStatusFilterProvider.notifier)
-                        .update((state) => 0);
+                        .read(selectedFilterTodoProvider.notifier)
+                        .update((state) => TodoFilter.all);
                     Navigator.of(context).pop();
                   }
                 },

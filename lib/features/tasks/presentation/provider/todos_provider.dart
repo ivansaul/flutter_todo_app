@@ -9,16 +9,6 @@ final selectedFilterTodoProvider = StateProvider<TodoFilter>((ref) {
   return TodoFilter.all;
 });
 
-final titleTodosStatusProvider = StateProvider<String>((ref) {
-  final todoFilter = ref.watch(selectedFilterTodoProvider);
-  return switch (todoFilter) {
-    TodoFilter.all => 'All',
-    TodoFilter.completed => 'Completed',
-    TodoFilter.pending => 'Pending',
-    TodoFilter.reminders => 'Reminders',
-  };
-});
-
 // ***********************************
 // ***** FILTERED TODOS PROVIDER *****
 // ***********************************
