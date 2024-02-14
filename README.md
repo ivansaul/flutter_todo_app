@@ -1,16 +1,24 @@
-![Repo Banner](https://i.imgur.com/ZYLGAGh.png)
 
-# Flutter Todo App
+<div align="center">
 
-A simple TODO APP implemented using Flutter, powered by Riverpod as the state management solution, and utilizing Isar and Hive as local databases. This project is not completed yet, as soon as possible when it's complete I will update it here. Stay tuned for more exciting updates!
+<img width="300" src="https://i.imgur.com/03HqEIy.png">
+
+<h1 style="border-bottom: none">
+    <b><a href="#">Flutter Todo App</a></b>
+</h1>
+
+A minimalistic `TODO` app built with **`Flutter`**. State management is handled by **`Riverpod`**, and local databases **`Isar`** and **`Hive`** provide efficient data storage. The project follows **`Clean Architecture`** principles for a modular codebase.
 
 [![Made-with-flutter](https://img.shields.io/badge/Made%20with-Flutter-orange)](https://flutter.dev/) 
 ![GitHub repo size](https://img.shields.io/github/repo-size/ivansaul/flutter_todo_app)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-### Don't forget to ⭐ the repo
+**`Don't forget to ⭐ the repo`**
+
 ![GitHub stars](https://img.shields.io/github/stars/ivansaul/flutter_todo_app?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/ivansaul/flutter_todo_app?style=social)
+
+</div>
 
 ## Features
 
@@ -28,18 +36,24 @@ A simple TODO APP implemented using Flutter, powered by Riverpod as the state ma
 and much more...
 Check it yourself :)
 
+> [!Note]
+> This project is not completed yet, as soon as possible when it's complete I will update it here. Stay tuned for more exciting updates!
+
+> [!Tip]
+> The `Isar` database implementation is in `new-isar` branch and the `Hive` database implementation is in `new-hive` branch.
+
+
 ## Screenshots
 
-<p align="center">
-  <img src="https://i.imgur.com/39QVqTZ.jpg" alt="Screenshots">
-</p>
+![Repo Banner](https://i.imgur.com/ZYLGAGh.png)
 
 ## Demo
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/ivansaul/demos/master/flutter/todo-list-app-demo.gif" alt="Demo">
 </p>
 
-## Packages we are using:
+## Packages we are using
 
 Package | Usage
 ------------ | -------------
@@ -51,6 +65,7 @@ Package | Usage
 [stylish_bottom_bar](https://pub.dev/packages/stylish_bottom_bar) | A collection of stylish bottom navigation bars.
 
 ## Design
+
 - [Figma](https://www.figma.com/community/file/1124394532783501567)
 
 ## Building from Source
@@ -58,14 +73,15 @@ Package | Usage
 1. If you don't have Flutter SDK installed, please visit official [Flutter](https://flutter.dev/) site.
 2. Fetch latest source code from master branch.
 
-```
-git clone https://github.com/ivansaul/flutter_todo_app.git
-```
+    ```bash
+    git clone https://github.com/ivansaul/flutter_todo_app.git
+    ```
 
-3. Run the app with Android Studio or VS Code. Or the command line:
+3. Run the app with Android Studio or VS Code. Or the command line.
 
-```
-flutter pub get
+```bash
+dart pub get
+dart run build_runner watch
 flutter run
 ```
 
