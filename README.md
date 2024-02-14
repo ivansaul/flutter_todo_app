@@ -20,6 +20,14 @@ A minimalistic `TODO` app built with **`Flutter`**. State management is handled 
 
 </div>
 
+![Repo Banner](https://i.imgur.com/ZYLGAGh.png)
+
+> [!Note]
+> This project is not completed yet, as soon as possible when it's complete I will update it here. Stay tuned for more exciting updates!
+
+> [!Tip]
+> The `Isar` database implementation is in `new-isar` branch and the `Hive` database implementation is in `new-hive` branch.
+
 ## Features
 
 - [x] Task creation.
@@ -36,16 +44,12 @@ A minimalistic `TODO` app built with **`Flutter`**. State management is handled 
 and much more...
 Check it yourself :)
 
-> [!Note]
-> This project is not completed yet, as soon as possible when it's complete I will update it here. Stay tuned for more exciting updates!
-
-> [!Tip]
-> The `Isar` database implementation is in `new-isar` branch and the `Hive` database implementation is in `new-hive` branch.
-
 
 ## Screenshots
 
-![Repo Banner](https://i.imgur.com/ZYLGAGh.png)
+<p align="center">
+  <img src="https://i.imgur.com/39QVqTZ.jpg" alt="Screenshots">
+</p>
 
 ## Demo
 
