@@ -1,0 +1,17 @@
+{
+    "cSpell.words": [
+        "ARGB",
+        "cupertino",
+        "isar",
+        "LTRB",
+        "roboto",
+        "saly",
+        "uuid"
+    ],
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+        }
+    }
+}
