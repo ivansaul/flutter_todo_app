@@ -56,6 +56,6 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
 }
 
 /// The provider for managing the new [Todo] description.
-final dscNewTodoProvider = StateProvider<String>((ref) {
+final newTodoProvider = StateProvider<String>((ref) {
   return '';
 });

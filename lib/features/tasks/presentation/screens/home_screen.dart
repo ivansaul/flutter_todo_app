@@ -105,12 +105,12 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
             builder: (context) {
               return CustomDialogNewTodo(
                 onPressedCreate: () {
-                  final dscrNewTodo = ref.read(dscNewTodoProvider);
-                  if (dscrNewTodo.isNotEmpty) {
+                  final newTodo = ref.read(newTodoProvider);
+                  if (newTodo.isNotEmpty) {
                     ref
                         .read(todosProvider.notifier)
-                        .addTodo(description: dscrNewTodo);
-                    ref.read(dscNewTodoProvider.notifier).update((state) => '');
+                        .addTodo(description: newTodo);
+                    ref.read(newTodoProvider.notifier).update((state) => '');
                     ref
                         .read(selectedFilterTodoProvider.notifier)
                         .update((state) => TodoFilter.all);

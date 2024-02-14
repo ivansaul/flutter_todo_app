@@ -78,7 +78,7 @@ class CustomDialogNewTodo extends ConsumerWidget {
             ),
             // controller: textEditingController,
             onChanged: (value) {
-              ref.read(dscNewTodoProvider.notifier).update((state) => value);
+              ref.read(newTodoProvider.notifier).update((state) => value);
             },
             onTapOutside: (event) {
               focusNode.unfocus();
