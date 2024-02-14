@@ -15,18 +15,20 @@
 // }
 
 // ***********************************
-// ***** Isar Implementation *********
+// ***** Hive Implementation *********
 // ***********************************
 
-import 'package:isar/isar.dart';
+import 'package:hive/hive.dart';
 
 part "todo.g.dart";
 
-@collection
+@HiveType(typeId: 2)
 class Todo {
-  Id isarId = Isar.autoIncrement;
+  @HiveField(0)
   final String id;
+  @HiveField(1)
   String description;
+  @HiveField(2)
   bool completed;
 
   Todo({
